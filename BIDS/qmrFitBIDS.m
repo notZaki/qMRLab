@@ -1,4 +1,4 @@
-function qmrFitBIDS(path)
+function FitResults = qmrFitBIDS(path)
 
 list = dir(fullfile(path,'*.json'));
 dif = struct();
@@ -45,8 +45,9 @@ dat = dat(:,:,100,:);
 
 
 data = struct();
-
+load mask
 data.VFAData = dat;
+data.Mask = msk;
 
 FitResults = FitData(data,Model,0);
 
@@ -57,7 +58,7 @@ FitResults.Model = Model; % qMRLab output.
 %           |- Output map will be displayed.
 %			|- If available, a graph will be displayed to show fitting in a voxel.
 % -------------------------------------------------------------------------
-data.Mask = msk;
+
 qMRshowOutput(FitResults,data,Model);
 
 end
