@@ -4,7 +4,7 @@
 
 ## Welcome to qMRLab, all your quantitative MRI needs under one umbrella!
 
-<img src="qMRLab-intro.png" width="1000">
+[<img src="qMRLab-intro.png" width="1000">](https://www.youtube.com/watch?v=-yrbtCYDorI)
 
 <img src="https://image.flaticon.com/icons/svg/504/504197.svg" width="200" height="200">
 
@@ -14,19 +14,19 @@ The modularity of the implementation makes it easy to add any additional modules
 
 qMRLab is a fork from the initial project ['qMTLab'](https://github.com/neuropoly/qMTLab).  
 ***
-![](https://media.readthedocs.com/corporate/img/header-logo.png)
+[![](https://media.readthedocs.com/corporate/img/header-logo.png)](http://qmrlab.readthedocs.io/)
 
 For **documentation**, visit the ['Documentation website'](http://qmrlab.readthedocs.io/)
 
 ***
 
-<img src="https://image.flaticon.com/icons/svg/249/249168.svg" width="200" height="200">
+[<img src="https://image.flaticon.com/icons/svg/249/249168.svg" width="200" height="200">](https://github.com/neuropoly/qMRLab/wiki)
 
 
 If you are a developer, visit the ['Wiki page'](https://github.com/neuropoly/qMRLab/wiki) 
 
 ***
-![](https://leantesting.com/wp-content/uploads/2015/04/logo-email-e1430168687881.png)
+[![](https://leantesting.com/wp-content/uploads/2015/04/logo-email-e1430168687881.png)](https://github.com/neuropoly/qMRLab/issues)
 
 Please report any bug or suggestions in [github](https://github.com/neuropoly/qMRLab/issues).
     
