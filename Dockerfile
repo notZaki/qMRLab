@@ -1,4 +1,4 @@
-FROM jupyter/scipy-notebook:cc9feab481f7
+FROM jupyter/minimal-notebook
 
 USER root
 
@@ -24,11 +24,10 @@ RUN cd $HOME; \
 
 RUN cd $HOME/GraphicsMagick-1.3.25; \
     ./configure  --with-quantum-depth=16 --enable-shared --disable-static --with-magick-plus-plus=yes --with-png=yes --with-tiff=yes --with-jpeg=yes --with-jp2=yes --with-dot=yes --with-jbig=yes; \
-    make -j4; \
+    make -j6; \
     make install; \
     cd /usr/local/include; \
     find GraphicsMagick/ -type d | xargs sudo chmod 755
-
 
 RUN apt-get install -y gcc g++ gfortran libblas-dev liblapack-dev libpcre3-dev libarpack2-dev libcurl4-gnutls-dev epstool libfftw3-dev transfig libfltk1.3-dev libfontconfig1-dev libfreetype6-dev libgl2ps-dev libglpk-dev libreadline-dev gnuplot libhdf5-serial-dev libsndfile1-dev llvm-dev lpr texinfo libgl1-mesa-dev libosmesa6-dev pstoedit portaudio19-dev libqhull-dev libqrupdate-dev libqscintilla2-dev libqt4-dev libqtcore4 libqtwebkit4 libqt4-network libqtgui4 libqt4-opengl-dev libsuitesparse-dev texlive libxft-dev zlib1g-dev automake bison flex gperf gzip icoutils librsvg2-bin libtool perl rsync tar openjdk-8-jdk
 
@@ -37,7 +36,7 @@ RUN cd $HOME; \
     tar -xvzf octave-4.2.1.tar.gz; \
     cd octave-4.2.1; \
     ./configure LD_LIBRARY_PATH=/opt/OpenBLAS/lib CPPFLAGS=-I/opt/OpenBLAS/include LDFLAGS=-L/opt/OpenBLAS/lib; \
-    make -j4; \
+    make -j6; \
     make install
 
 RUN cd $HOME; \
@@ -60,7 +59,13 @@ dpkg -i $HOME/libumfpack5.6.2_4.2.1-3_amd64.deb;\
 dpkg -i $HOME/libhdf5-8_1.8.13+docs-15+deb8u1_amd64.deb;\
 dpkg -i $HOME/libcxsparse3.1.2_4.2.1-3_amd64.deb;\
 dpkg -i $HOME/libatlas3-base_3.10.2-7_amd64.deb;\
-dpkg -i $HOME/liboctave2_3.8.2-4_amd64.deb
+dpkg -i $HOME/liboctave2_3.8.2-4_amd64.deb;\
+rm $HOME/*deb;\
+rm $HOME/GraphicsMagick-1.3.25.tar.gz;\
+rm -rf $HOME/GraphicsMagick-1.3.25;\
+rm $HOME/octave-4.2.1.tar.gz;\
+rm -rf $HOME/octave-4.2.1.tar.gz;
+
 
 RUN mkdir /home/packages
 RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/control-3.0.0.tar.gz -P /home/packages
@@ -72,6 +77,7 @@ RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/
 RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/struct-1.0.14.tar.gz -P /home/packages
 RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/optim-1.5.2.tar.gz -P /home/packages
 RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/dicom-0.2.0.tar.gz -P /home/packages
+RUN rm /home/packages/*tar.gz
 
 RUN octave --eval "cd /home/packages; \
                    more off; \
@@ -86,9 +92,7 @@ RUN octave --eval "cd /home/packages; \
                    statistics-1.3.0.tar.gz"
 
 RUN pip install  \
-    octave_kernel \
-    nipype \
-    nibabel
+    octave_kernel
 
 WORKDIR $HOME/work
 
