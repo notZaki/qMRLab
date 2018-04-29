@@ -1,4 +1,5 @@
 # qMRLab (beta) [![Build Status](https://travis-ci.org/neuropoly/qMRLab.svg?branch=master)](https://travis-ci.org/neuropoly/qMRLab)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/neuropoly/qMRLab/bids?filepath=mt_sat_example.ipynb)
 
 Welcome to qMRLab, all your quantitative MRI needs under one umbrella! 
 
