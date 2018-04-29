@@ -1,6 +1,7 @@
-function FitResults = qmrFitBIDS(path)
-
+function [FitResults] = qmrFitBIDS(path)
+curdir = pwd;
 list = dir(fullfile(path,'*.json'));
+cd(path);
 dif = struct();
 first = loadjson(list(1).name);
 ignoreFields = {'SeriesDescription','ProtocolName','SeriesNumber','AcquisitionTime','SAR'};
@@ -52,15 +53,17 @@ data.Mask = msk;
 FitResults = FitData(data,Model,0);
 
 FitResults.Model = Model; % qMRLab output.
-
+Model.saveObj('vfa_t1_Demo.qmrlab.mat');
+save 'FitResults.mat' FitResults
 % -------------------------------------------------------------------------
 %%       C- SHOW FITTING RESULTS 
 %           |- Output map will be displayed.
 %			|- If available, a graph will be displayed to show fitting in a voxel.
 % -------------------------------------------------------------------------
 
-qMRshowOutput(FitResults,data,Model);
+%qMRshowOutput(FitResults,data,Model);
 
+cd(curdir);
 end
 
 
