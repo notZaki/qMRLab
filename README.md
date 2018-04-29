@@ -8,8 +8,9 @@
 
 [<img src="https://image.flaticon.com/icons/svg/504/504197.svg" width="200" height="200">](https://www.neuro.polymtl.ca/home)
 
-qMRLab is an open-source software for quantitative MR image analysis. The main goal
-is to provide the community with an intuitive tool for data fitting, plotting, simulation and protocol optimization for a myriad of different quantitative models.
+### qMRLab is an open-source software for quantitative MR image analysis. 
+
+The main goal is to provide the community with an intuitive tool for data fitting, plotting, simulation and protocol optimization for a myriad of different quantitative models.
 The modularity of the implementation makes it easy to add any additional modules and we encourage everyone to contribute their favorite recipe for qMR!
 
 qMRLab is a fork from the initial project ['qMTLab'](https://github.com/neuropoly/qMTLab).  
