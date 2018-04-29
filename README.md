@@ -16,19 +16,23 @@ qMRLab is a fork from the initial project ['qMTLab'](https://github.com/neuropol
 ***
 [![](https://media.readthedocs.com/corporate/img/header-logo.png)](http://qmrlab.readthedocs.io/)
 
-For **documentation**, visit the ['Documentation website'](http://qmrlab.readthedocs.io/)
+### For **documentation**, visit the ['Documentation website'](http://qmrlab.readthedocs.io/)
 
+***
+[<img src="https://github.com/agahkarakuzu/agahkarakuzu.github.io/blob/master/dockerqMR.png?raw=true" width="200" height="300">](https://hub.docker.com/r/neuropoly/qmrlab/)
+
+### qMRLab is Dockerized: `docker pull neuropoly/qrmlab`
 ***
 
 [<img src="https://image.flaticon.com/icons/svg/249/249168.svg" width="200" height="200">](https://github.com/neuropoly/qMRLab/wiki)
 
 
-If you are a developer, visit the ['Wiki page'](https://github.com/neuropoly/qMRLab/wiki) 
+### If you are a developer, visit the ['Wiki page'](https://github.com/neuropoly/qMRLab/wiki) 
 
 ***
 [![](https://leantesting.com/wp-content/uploads/2015/04/logo-email-e1430168687881.png)](https://github.com/neuropoly/qMRLab/issues)
 
-Please report any bug or suggestions in [github](https://github.com/neuropoly/qMRLab/issues).
+### Please report any bug or suggestions in [GitHub](https://github.com/neuropoly/qMRLab/issues).
     
 
 ## Citation
