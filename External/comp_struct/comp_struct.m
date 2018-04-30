@@ -1,4 +1,4 @@
-function [common, d1, d2] = comp_struct(s1,s2,prt,pse,tol,n1,n2)
+function [common, d1, d2] = comp_struct(s1,s2,prt,pse,tol,tolFlag,n1,n2)
 % check two structures for differances - i.e. see if strucutre s1 == structure s2
 % function [common, d1, d2] = comp_struct(s1,s2,prt,pse,tol)
 %
@@ -8,6 +8,7 @@ function [common, d1, d2] = comp_struct(s1,s2,prt,pse,tol,n1,n2)
 % prt     print test results (0 / 1 / 2 / 3)         class integer - optional
 % pse     pause flag (0 / 1 / 2)                     class integer - optional
 % tol     tol default tolerance (real numbers)       class integer - optional
+% tolFlag tolerance type flag. 'relative' (%) or 'absolute' (diff)
 %
 % outputs 5 - 5 optional
 % common  matching fields                            class struct - optional
@@ -42,6 +43,18 @@ end
 if nargin < 3 || isempty(prt); prt = 0; end
 if nargin < 4 || isempty(pse); pse = 0; elseif pse ~= 1 && prt == 0; pse = 0; end
 if nargin < 5 || isempty(tol); tol = 1e-20; end
+if nargin < 6 || isempty(tolFlag)
+    tolFlag = 'relative';
+else
+    switch tolFlag
+        case 'relative'
+        case 'absolute'
+        otherwise
+            ME = MException('comp_struct:InvalidArgument', ...
+                 'Tolerance flag %s is not implemented; see `help compstruct` for valid flags.', tolFlag);
+            throw(ME)
+    end
+end
 if pse > prt, pse = prt; end
 
 if ~exist('n1','var'); n1 =  inputname(1); end
@@ -78,7 +91,7 @@ if ~isequal(s1,s2)
 			for jj = 1:min([numel(d1) numel(d2)])
 				[common(jj).(fn{ii}) d1(jj).(fn{ii}) d2(jj).(fn{ii})] = ...
 					comp_struct(s1(jj).(fn{ii}),s2(jj).(fn{ii}), ...
-					prt,pse,tol, ...
+					prt,pse,tol,tolFlag, ...
 					[n1 '(' num2str(jj) ').' fn{ii}], ...
 					[n2 '(' num2str(jj) ').' fn{ii}]);
 			end
@@ -121,9 +134,16 @@ if ~isequal(s1,s2)
 				if min(size(s1) == size(s2)) && ...
 						(isa(s1,'single') || isa(s1,'double'))
 					% tolerance match?
-					if ((max(s1)==0 || max(s2) ==0) && max(abs(s1-s2)) < tol) || numel(find(abs(s1-s2)./s1 < tol)) == numel(s1)
-						flag(1) = 0;
-					end
+					switch tolFlag
+                        case 'relative'
+                            if ((max(s1)==0 || max(s2) ==0) && max(abs(s1-s2)) < tol) || numel(find(abs(s1-s2)./s1 < tol)) == numel(s1)
+                                flag(1) = 0;
+                            end
+                        case 'absolute'
+                            if numel(find(abs(s1-s2) < tol)) == numel(s1)
+                                flag(1) = 0;
+                            end
+                    end
 				else
 					% print and pause?
 					if prt > 1
