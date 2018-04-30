@@ -8,7 +8,7 @@ function [common, d1, d2] = comp_struct(s1,s2,prt,pse,tol,tolFlag,n1,n2)
 % prt     print test results (0 / 1 / 2 / 3)         class integer - optional
 % pse     pause flag (0 / 1 / 2)                     class integer - optional
 % tol     tol default tolerance (real numbers)       class integer - optional
-% tolFlag tolerance type flag. 'relative' (%) or 'absolute' (diff)
+% tolFlag tolerance type flag. 'relative' (% - default) or 'absolute' (diff)
 %
 % outputs 5 - 5 optional
 % common  matching fields                            class struct - optional
