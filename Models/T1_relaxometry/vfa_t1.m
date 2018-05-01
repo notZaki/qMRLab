@@ -1,4 +1,4 @@
-classdef vfa_t1 < AbstractModel
+classdef vfa_t1 < AbstractModel & BIDS
 % vfa_t1: Compute a T1 map using Variable Flip Angle
 %
 % Assumptions:
@@ -74,6 +74,26 @@ end
         Sim_Optimize_Protocol_buttons = {'# of volumes',5,'Population size',100,'# of migrations',100};
     end
     
+    properties (Access = public)
+        % BIDS-related properties
+        % *One simplification that could be done is rename these fields in
+        % the model to match BIDS specifications.
+        %
+        
+        %                                     BIDS field,   Model field
+        bidsSequenceLabel = struct(            'DESPOT1',     'VFAData');
+
+        %                                     BIDS field,   Model field
+        bidsContrastLabel = struct(              'B1map',       'B1map', ...
+                                                  'Mask',        'Mask'  ...
+                            );
+
+        %                                       BIDS field,   Model field
+        bidsConversion = struct('ExcitationRepetitionTime',          'TR', ...
+                                               'FlipAngle',   'FlipAngle'  ...
+                               );
+    end
+
 methods (Hidden=true)
 % Hidden methods goes here.    
 end
