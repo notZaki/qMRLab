@@ -1,4 +1,4 @@
-FROM jupyter/minimal-notebook
+FROM jupyter/minimal-notebook:1af3089901bb
 
 USER root
 
@@ -13,7 +13,7 @@ RUN sudo apt-add-repository ppa:octave/stable;\
     apt-get update
 
 
-RUN apt-get update && apt-get -y install ghostscript && apt-get clean
+RUN apt-get -y install ghostscript && apt-get clean
 
 
 RUN apt-get install -y bzip2 libpng-dev libjpeg-dev libjasper-dev libbz2-dev libfreetype6 libgomp1 libtiff-dev
@@ -67,17 +67,17 @@ rm $HOME/octave-4.2.1.tar.gz;\
 rm -rf $HOME/octave-4.2.1.tar.gz;
 
 
-RUN mkdir /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/control-3.0.0.tar.gz -P /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/general-2.0.0.tar.gz -P /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/signal-1.3.2.tar.gz -P /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/image-2.6.1.tar.gz -P /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/io-2.4.7.tar.gz -P /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/statistics-1.3.0.tar.gz -P /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/struct-1.0.14.tar.gz -P /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/optim-1.5.2.tar.gz -P /home/packages
-RUN wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/dicom-0.2.0.tar.gz -P /home/packages
-RUN rm /home/packages/*tar.gz
+RUN mkdir /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/control-3.0.0.tar.gz -P /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/general-2.0.0.tar.gz -P /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/signal-1.3.2.tar.gz -P /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/image-2.6.1.tar.gz -P /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/io-2.4.7.tar.gz -P /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/statistics-1.3.0.tar.gz -P /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/struct-1.0.14.tar.gz -P /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/optim-1.5.2.tar.gz -P /home/packages; \
+    wget http://sourceforge.net/projects/octave/files/Octave%20Forge%20Packages/Individual%20Package%20Releases/dicom-0.2.0.tar.gz -P /home/packages; \
+    rm /home/packages/*tar.gz
 
 RUN octave --eval "cd /home/packages; \
                    more off; \
@@ -102,8 +102,3 @@ RUN chmod -R 777 $HOME/work/qMRLab
 RUN octave --eval "cd qMRLab; \
                    startup;"
 USER $NB_USER
-
-
-
-
-
