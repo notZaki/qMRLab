@@ -1,7 +1,7 @@
-function [FitResults] = qmrFitBIDS(path)
+function [FitResults] = qmrFitBIDS(bidsPath)
 curdir = pwd;
-list = dir(fullfile(path,'*.json'));
-cd(path);
+list = dir(fullfile(bidsPath,'*.json'));
+cd(bidsPath);
 dif = struct();
 first = loadjson(list(1).name);
 ignoreFields = {'SeriesDescription','ProtocolName','SeriesNumber','AcquisitionTime','SAR'};
