@@ -175,7 +175,7 @@ classdef (Abstract) BIDS
                     tempData = load_nii_data(listData(sequenceIndices(jj)).name);
                     
                     if length(size(tempData)) == 2 % Single-slice data volumes
-                        data.(modelSequenceName)(:,:,jj)=tempData;
+                        data.(modelSequenceName)(:,:,1,jj)=tempData;
                     elseif length(size(tempData)) == 3 % 3D data volumes
                         data.(modelSequenceName)(:,:,:,jj)=tempData;
                     else
