@@ -1,0 +1,8 @@
+version: '3.7'
+services:
+  MCR:
+    # will build ./docker/web/Dockerfile
+    build: ./docker/MCR
+  OctJN:
+    # will build ./docker/db/Dockerfile
+    build: ./docker/OctJN
