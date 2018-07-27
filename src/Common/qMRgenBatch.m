@@ -371,7 +371,7 @@ if flg
     eq2 = [];
     readList = input(boolIdx);
     n = 1;
-    for i=1:length(readList);
+    for i=1:length(readList)
         
         if strcmp(format,'nifti')
             curDat = double(load_nii_data([dir filesep readList{i}]));
