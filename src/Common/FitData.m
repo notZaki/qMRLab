@@ -29,7 +29,9 @@ function Fit = FitData(data, Model, wait , Fittmp)
 % ----------------------------------------------------------------------------------------------------
 
 % Before fitting, do a sanity check on the input data and protocol
+if ~isdeployed
 Model.sanityCheck(data);
+end
 
 tStart = tic;
 if ismethod(Model,'Precompute'), Model = Model.Precompute; end
