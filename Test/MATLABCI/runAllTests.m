@@ -8,7 +8,7 @@ rtDir = entry(1:lc-1);
 
 cd(rtDir);
 disp(['Entered ' pwd]);
-list(ls);
+
 bootstrapTest; % This should add them all.
 res=moxunit_runtests('BatchExample_test.m','-with_coverage','-cover',pwd,'-cover_exclude','*GUI*','-cover_json_file','coverage_BatchExample.json');
 assert(~res,'Nope.');
