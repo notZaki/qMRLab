@@ -1,4 +1,4 @@
-%disp(pwd);
+disp(pwd);
 % /users/mss.system.Ax1P4l/build/Test/MATLABCI is the startup
 % when you pass -sd "Test/MATLABCI". 
 
