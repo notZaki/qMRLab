@@ -31,7 +31,7 @@ function state=mocov_line_covered(varargin)
     %persistent cached_line_count;
 
     cached_keys = [];
-    ccached_line_count = [];
+    cached_line_count = [];
 
     % initialize persistent variables, if necessary
     if isnumeric(cached_keys)
