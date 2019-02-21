@@ -9,5 +9,6 @@ disp(['Entered ' pwd]);
 
 
 bootstrapTest; % This should add them all.
-res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/BatchExample_test.m']);
-assert(~res,'Nope.');
+
+res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible'],'-recursive');
+assert(~res,'Batch example test cannot pass.');
