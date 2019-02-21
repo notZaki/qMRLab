@@ -27,12 +27,9 @@ function state=mocov_line_covered(varargin)
 % NNO May 2014
 
 
-    %persistent cached_keys;
-    %persistent cached_line_count;
-
-    cached_keys = [];
-    cached_line_count = [];
-
+    persistent cached_keys;
+    persistent cached_line_count;
+    
     % initialize persistent variables, if necessary
     if isnumeric(cached_keys)
         cached_keys=cell(0);

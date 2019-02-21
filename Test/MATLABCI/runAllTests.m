@@ -9,5 +9,5 @@ disp(['Entered ' pwd]);
 
 
 bootstrapTest; % This should add them all.
-res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/BatchExample_test.m'],'-with_coverage','-cover',pwd,'-cover_exclude','*GUI*','-cover_json_file','coverage_BatchExample.json');
+res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/BatchExample_test.m']);
 assert(~res,'Nope.');
