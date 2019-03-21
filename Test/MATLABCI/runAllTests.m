@@ -10,5 +10,23 @@ disp(['Entered ' pwd]);
 
 bootstrapTest; % This should add them all.
 disp('We have more space!!!!');
-res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible'],'-recursive');
+disp('Equation tests');
+res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/equation_test'],'-recursive');
 assert(~res,'Batch example test cannot pass.');
+
+disp('Quick Mox Tests');
+res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/quickMoxTests'],'-recursive');
+assert(~res,'Batch example test cannot pass.');
+
+lst = dir(fullfile(pwd,'*.m'));
+
+for ii=1:length(lst)
+    
+    disp('====================');
+    disp(lst(ii).name);
+    res = moxunit_runtests(lst(ii).name);
+    assert(~res,'Batch example test cannot pass.');
+
+end
+
+
