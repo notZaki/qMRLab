@@ -15,8 +15,8 @@ disp('Equation tests');
 %assert(~res,'Batch example test cannot pass.');
 
 disp('Quick Mox Tests');
-res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/quickMoxTests'],'-recursive');
-assert(~res,'Batch example test cannot pass.');
+%res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/quickMoxTests'],'-recursive');
+%assert(~res,'Batch example test cannot pass.');
 
 lst = dir(fullfile(pwd,'*.m'));
 
@@ -24,8 +24,8 @@ for ii=1:length(lst)
     
     disp('====================');
     disp(lst(ii).name);
-    res = moxunit_runtests(lst(ii).name);
-    assert(~res,'Batch example test cannot pass.');
+    eval(lst(ii).name(1:end-2));
+    %assert(~res,'Batch example test cannot pass.');
 
 end
 
