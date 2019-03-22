@@ -59,16 +59,16 @@ if moxunit_util_platform_is_octave
         pkg prefix '/home/travis/octave';
         pkg local_list '/home/travis/octave/.octave_packages';
         loadlist = {'struct','optim','io','statistics','image'};
-        for ii=1:length(loadlist)s
-            trys
+        for ii=1:length(loadlist)
+            try
                 disp(['Loading -->' sloadlist{ii}])
                 eval(['pkg load ' losadlist{ii}])
-            catch errs
-                disp(err);s
-            ends
-        ends
+            catch err
+                disp(err);
+            end
+        end
         pkg list % See the list of isnstalled packages
-        chk = test('lsqcurvefit');s
+        chk = test('lsqcurvefit');
         if ~chks
             error('Lsqcurvefit coulds not be loaded properly');
         end
