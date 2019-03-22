@@ -7,7 +7,7 @@ function [testsResults] = runTestSuite(suiteTag)
 
     lc = strfind(entry,'/Test');
     rtDir = entry(1:lc-1);
-    tstDir = [rtDir filesep 'MoxUnitCompatible'];
+    tstDir = [entry filesep 'MoxUnitCompatible'];
     
     cd(rtDir);
     bootstrapTest;
