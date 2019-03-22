@@ -21,6 +21,13 @@ function [testsResults] = runTestSuite(suiteTag)
     %testsResults = run(persistenceSuite)
 
     res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/equation_test'],'-recursive');
-    disp(res);
+    assert(logical(res),'Equation test test cannot pass.');
+
+    res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/quickMoxTests'],'-recursive');
+    assert(logical(res),'Quickmox test test cannot pass.');
+
+    
+
+
 
 end
