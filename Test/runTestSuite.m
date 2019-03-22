@@ -5,6 +5,6 @@ function [testsResults] = runTestSuite(suiteTag)
     import matlab.unittest.TestSuite;
     fullSuite = TestSuite.fromFolder(pwd, 'IncludingSubfolders', true);
     persistenceSuite = fullSuite.selectIf('Tag',suiteTag);
-    testsResults = run(persistenceSuite)
+    testsResults = run(persistenceSuite);
 end
 

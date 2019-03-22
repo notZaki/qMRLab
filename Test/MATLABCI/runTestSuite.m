@@ -7,15 +7,20 @@ function [testsResults] = runTestSuite(suiteTag)
 
     lc = strfind(entry,'/Test');
     rtDir = entry(1:lc-1);
-    tstDir = [entry filesep 'MoxUnitCompatible'];
+
+    lc2 = strfind(entry,'/MATLABCI');
+    tstDir = entry(1:lc2-1);;
     
     cd(rtDir);
     bootstrapTest;
 
-    import matlab.unittest.TestSuite;
-    fullSuite = TestSuite.fromFolder(tstDir, 'IncludingSubfolders', true);
+    %import matlab.unittest.TestSuite;
+    %fullSuite = TestSuite.fromFolder([tstDir filesep 'MoxUnitCompatible'], 'IncludingSubfolders', true);
     
-    persistenceSuite = fullSuite.selectIf('Tag',suiteTag);
-    testsResults = run(persistenceSuite)
+    %persistenceSuite = fullSuite.selectIf('Tag',suiteTag);
+    %testsResults = run(persistenceSuite)
+
+    res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/equation_test'],'-recursive');
+    disp(res);
 
 end
