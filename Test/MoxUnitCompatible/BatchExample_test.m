@@ -32,6 +32,10 @@ Modellist(Index) = [];
 IndexC=strfind(Modellist,'qmt_sirfse');
 Index = find(not(cellfun('isempty', IndexC)));
 Modellist(Index) = [];
+
+IndexC=strfind(Modellist,'dti');
+Index = find(not(cellfun('isempty', IndexC)));
+Modellist(Index) = [];
 %***TEMP(May 8th 2018): skip qmt_spgr to shorten TRAVIS test***
 for iModel = 1:length(Modellist)
     disp('===============================================================')
