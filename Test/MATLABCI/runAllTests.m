@@ -1,3 +1,6 @@
+function tests
+
+
 entry = pwd;
 
 lc = strfind(entry,'/Test');
@@ -9,6 +12,7 @@ disp(['Entered ' pwd]);
 
 
 bootstrapTest; % This should add them all.
+%{
 disp('We have more space!!!!');
 disp('Equation tests');
 %res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/equation_test'],'-recursive');
@@ -28,5 +32,7 @@ for ii=1:length(lst)
     %assert(~res,'Batch example test cannot pass.');
 
 end
+%} 
+
 
 

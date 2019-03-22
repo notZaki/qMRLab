@@ -59,21 +59,24 @@ if moxunit_util_platform_is_octave
         pkg prefix '/home/travis/octave';
         pkg local_list '/home/travis/octave/.octave_packages';
         loadlist = {'struct','optim','io','statistics','image'};
-        for ii=1:length(loadlist)
-            try
-                disp(['Loading -->' loadlist{ii}])
-                eval(['pkg load ' loadlist{ii}])
-            catch err
-                disp(err);
-            end
-        end
-        pkg list % See the list of installed packages
-        chk = test('lsqcurvefit');
-        if ~chk
-            error('Lsqcurvefit could not be loaded properly');
+        for ii=1:length(loadlist)s
+            trys
+                disp(['Loading -->' sloadlist{ii}])
+                eval(['pkg load ' losadlist{ii}])
+            catch errs
+                disp(err);s
+            ends
+        ends
+        pkg list % See the list of isnstalled packages
+        chk = test('lsqcurvefit');s
+        if ~chks
+            error('Lsqcurvefit coulds not be loaded properly');
         end
         %unix('lscpu'); % Check processor allowance on remote server
     end
+
+else
+    setenv('ISTRAVIS','1');
 end
 
 
