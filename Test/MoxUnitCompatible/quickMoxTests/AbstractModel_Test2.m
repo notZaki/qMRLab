@@ -1,4 +1,4 @@
-function test_suite=AbstractModel_Test
+function test_suite=AbstractModel_Test2
 try % assignment of 'localfunctions' is necessary in Matlab >= 2016
     test_functions=localfunctions();
 catch % no problem; early Matlab versions can use initTestSuite fine

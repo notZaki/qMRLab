@@ -26,7 +26,10 @@ function [testsResults] = runTestSuite(suiteTag)
     res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible/quickMoxTests'],'-recursive');
     assert(logical(res),'Quickmox test test cannot pass.');
 
-    
+    res=moxunit_runtests([rtDir filesep 'Test/MoxUnitCompatible']);
+    assert(logical(res),'Batch test cannot pass.');
+
+
 
 
 
