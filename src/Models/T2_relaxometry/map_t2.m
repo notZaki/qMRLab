@@ -35,12 +35,12 @@ classdef map_t2 < AbstractModel % Name your Model
         MRIinputs = {'MESEdata','Mask'}; % used in the data panel
         
         % fitting options
-        xnames = { 'T2','M0','Offset'}; % name of the parameters to fit
+        xnames = { 'T2','M0'}; % name of the parameters to fit
         voxelwise = 1; % 1--> input data in method 'fit' is 1D (vector). 0--> input data in method 'fit' is 4D.
-        %st           = [ 0.7	0.5 ]; % starting point
-        %lb            = [  0      0 ]; % lower bound
-        %ub           = [ 1        3 ]; % upper bound
-        %fx            = [ 0       0 ]; % fix parameters
+        st           = [ 0.7	0.5 ]; % starting point
+        lb            = [  0      0 ]; % lower bound
+        ub           = [ 1        3 ]; % upper bound
+        fx            = [ 0       0 ]; % fix parameters
         
         % Protocol
         Prot  = struct('MESEdata',struct('Format',{{'EchoTime (ms)'}},...
@@ -157,7 +157,6 @@ classdef map_t2 < AbstractModel % Name your Model
                 if regOut(2) == 0 ; regOut(2) = eps; end;
                 t2 = -1./regOut(2);
                 
-                if t2>obj.options.Cutoff; t2 = obj.options.Cutoff; end;
                 if isnan(t2); t2 = 0; end;
                 if t2<0; t2 = 0; end;
                 
@@ -197,6 +196,7 @@ classdef map_t2 < AbstractModel % Name your Model
         end
         
         function FitResults = Sim_Single_Voxel_Curve(obj, x, Opt, display)
+            if nargin<4, display=1; end
             % Compute Smodel
             Smodel = equation(obj, x);
             % add rician noise
@@ -210,5 +210,14 @@ classdef map_t2 < AbstractModel % Name your Model
             end
         end
         
+        function SimVaryResults = Sim_Sensitivity_Analysis(obj, OptTable, Opt)
+            % SimVaryGUI
+            SimVaryResults = SimVary(obj, Opt.Nofrun, OptTable, Opt);
+        end
+        
+        function SimRndResults = Sim_Multi_Voxel_Distribution(obj, RndParam, Opt)
+            % SimRndGUI
+            SimRndResults = SimRnd(obj, RndParam, Opt);
+        end
     end
 end
