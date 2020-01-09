@@ -1,10 +1,12 @@
 classdef map_t2 < AbstractModel % Name your Model
-    % vfa_t1: Compute a T1 map using Variable Flip Angle
+    % map_t2: Compute a monoexponential T2 map using multi-echo spin-echo
+    % data
     %
     % Assumptions:
+    %   Mono-exponential fit
     %
     % Inputs:
-    %   MESEdata         spoiled Gradient echo data, 4D volume with different flip angles in time dimension
+    %   MESEdata        multi-echo data, 4D volume with different echo times in time dimension
     %   (Mask)          Binary mask to accelerate the fitting (optional)
     %
     % Outputs:
@@ -12,22 +14,23 @@ classdef map_t2 < AbstractModel % Name your Model
     %   M0              Equilibrium magnetization
     %
     % Protocol:
-    %   VFAData Array [nbFA x 2]:
-    %       [FA1 TR1; FA2 TR2;...]      flip angle [degrees] TR [s]
+    %   TE Array [nbTE]:
+    %       [TE1 TE2...TEn]      TE [ms] 
     %
     % Options:
-    %   None
+    %   FitType     Linear or Exponential
+    %   DropFirstEcho  Optionally drop 1st echo because of imperfect refocusing https://www.ncbi.nlm.nih.gov/pubmed/26678918
+    %   Offset          Optionally fit for offset parameter to correct for imperfect refocusing https://www.ncbi.nlm.nih.gov/pubmed/26678918
     %
     % Example of command line usage:
-    %   Model = vfa_t1;  % Create class from model
-    %   Model.Prot.VFAData.Mat=[3 0.015; 20 0.015]; %Protocol: 2 different FAs
+    %   Model = map_t2;  % Create class from model
+    %   Model.Prot.MESEData.Mat=[10:10:320]; %Protocol: 32 echo times
     %   data = struct;  % Create data structure
-    %   data.VFAData = load_nii_data('VFAData.nii.gz');
-    %   data.B1map = load_nii_data('B1map.nii.gz');
+    %   data.MESEData = load_nii_data('MESEData.nii.gz');
     %   FitResults = FitData(data,Model); %fit data
     %   FitResultsSave_mat(FitResults);
     %
-    %   For more examples: <a href="matlab: qMRusage(vfa_t1);">qMRusage(vfa_t1)</a>
+    %   For more examples: <a href="matlab: qMRusage(map_t2);">qMRusage(map_t2)</a>
     
     
     
