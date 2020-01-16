@@ -14,17 +14,19 @@ classdef map_t2 < AbstractModel % Name your Model
     %   M0              Equilibrium magnetization
     %
     % Protocol:
-    %   TE Array [nbTE]:
-    %       [TE1 TE2...TEn]      TE [ms] 
+    %   TE Array [1x nbTE]:
+    %       [TE1; TE2;...;TEn]      TE [ms] (in 1 column)
     %
     % Options:
-    %   FitType     Linear or Exponential
+    %   FitType     Linear (log-transform the data and fit)
+    %               or 
+    %               Exponential (Non-linear least squares using levenberg-marquardt (LM)
     %   DropFirstEcho  Optionally drop 1st echo because of imperfect refocusing https://www.ncbi.nlm.nih.gov/pubmed/26678918
     %   Offset          Optionally fit for offset parameter to correct for imperfect refocusing https://www.ncbi.nlm.nih.gov/pubmed/26678918
     %
     % Example of command line usage:
     %   Model = map_t2;  % Create class from model
-    %   Model.Prot.MESEData.Mat=[10:10:320]; %Protocol: 32 echo times
+    %   Model.Prot.MESEdata.Mat=[10:10:320]; %Protocol: 32 echo times
     %   data = struct;  % Create data structure
     %   data.MESEData = load_nii_data('MESEData.nii.gz');
     %   FitResults = FitData(data,Model); %fit data
@@ -141,7 +143,7 @@ classdef map_t2 < AbstractModel % Name your Model
                 if obj.options.DropFirstEcho
                     
                     xData = obj.Prot.MESEdata.Mat(2:end);
-                    yDat = log(data.MESEdata(2:end));
+                    yDat = log(double(data.MESEdata(2:end)));
                     
                     if max(size(yDat)) == 1
                         error('DropFirstEcho is not valid for ETL of 2.');
@@ -150,7 +152,7 @@ classdef map_t2 < AbstractModel % Name your Model
                     else
                    
                     xData = obj.Prot.MESEdata.Mat;
-                    yDat = log(data.MESEdata);
+                    yDat = log(double(data.MESEdata));
                     
                 end
                 
