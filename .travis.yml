@@ -46,7 +46,7 @@ jobs:
     - |
       travis_wait $WAIT_TIME \
       octave --no-gui --eval "bootstrapTest;cd('$TRAVIS_BUILD_DIR/Test/MoxUnitCompatible/quickMoxTests'); \
-      res=moxunit_runtests('-recursive','-with_coverage','-cover','$TRAVIS_BUILD_DIR/src','-cover_exclude','*GUI*','-cover_json_file','coverage_quickMoxTests.json'); \
+      res=moxunit_runtests('-recursive','-with_coverage','-cover','$TRAVIS_BUILD_DIR/src','-cover_exclude','*GUI*','-cover_json_file','coverage_quickMoxTests.json'); sleep 10; \
       exit(~res);"
       if [ "$?" != "0" ]; then travis_terminate 1; fi
       if [ "${TRAVIS_REPO_SLUG%%/*}" =  "qMRLab" ] 
@@ -60,7 +60,7 @@ jobs:
     - |
       travis_wait $WAIT_TIME \
       octave --no-gui --eval "bootstrapTest;cd('$TRAVIS_BUILD_DIR/Test/MoxUnitCompatible'); \
-      res=moxunit_runtests('BatchExample_test.m','-with_coverage','-cover','$TRAVIS_BUILD_DIR/src','-cover_exclude','*GUI*','-cover_json_file','coverage_BatchExample.json'); \
+      res=moxunit_runtests('BatchExample_test.m','-with_coverage','-cover','$TRAVIS_BUILD_DIR/src','-cover_exclude','*GUI*','-cover_json_file','coverage_BatchExample.json'); sleep 10; \
       exit(~res);" 
       if [ "$?" != "0" ]; then travis_terminate 1; fi
       if [ "${TRAVIS_REPO_SLUG%%/*}" =  "qMRLab" ] 
